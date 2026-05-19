@@ -10,4 +10,11 @@
     <ProjectReference Include="..\Comun.Herramientas\Comun.Herramientas.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.79" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.8" />
+    <PackageReference Include="Npgsql" Version="10.0.2" />
+  </ItemGroup>
+
 </Project>

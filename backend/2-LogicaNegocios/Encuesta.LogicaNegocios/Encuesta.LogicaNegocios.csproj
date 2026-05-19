@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\3-AccesoDatos\Encuesta.AccesoDatos\Encuesta.AccesoDatos.csproj" />
+    <ProjectReference Include="..\..\4-ModeloDatos\Encuesta.ModeloDatos\Encuesta.ModeloDatos.csproj" />
+    <ProjectReference Include="..\..\5-Herramientas\Comun.Herramientas\Comun.Herramientas.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

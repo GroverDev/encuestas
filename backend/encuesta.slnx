@@ -1,2 +1,18 @@
 <Solution>
+  <Folder Name="/5-Herramientas/">
+    <Project Path="5-Herramientas\Comun.Herramientas\Comun.Herramientas.csproj" />
+    <Project Path="5-Herramientas\Comun.BaseDatos\Comun.BaseDatos.csproj" />
+  </Folder>
+  <Folder Name="/4-ModeloDatos/">
+    <Project Path="4-ModeloDatos\Encuesta.ModeloDatos\Encuesta.ModeloDatos.csproj" />
+  </Folder>
+  <Folder Name="/3-AccesoDatos/">
+    <Project Path="3-AccesoDatos\Encuesta.AccesoDatos\Encuesta.AccesoDatos.csproj" />
+  </Folder>
+  <Folder Name="/2-LogicaNegocios/">
+    <Project Path="2-LogicaNegocios\Encuesta.LogicaNegocios\Encuesta.LogicaNegocios.csproj" />
+  </Folder>
+  <Folder Name="/1-Servicios/">
+    <Project Path="1-Servicios\Encuesta.Api\Encuesta.Api.csproj" />
+  </Folder>
 </Solution>

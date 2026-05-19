@@ -1,0 +1,389 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/grover/projects/encuestas/backend/3-AccesoDatos/Encuesta.AccesoDatos/Encuesta.AccesoDatos.csproj": {}
+  },
+  "projects": {
+    "/Users/grover/projects/encuestas/backend/3-AccesoDatos/Encuesta.AccesoDatos/Encuesta.AccesoDatos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/grover/projects/encuestas/backend/3-AccesoDatos/Encuesta.AccesoDatos/Encuesta.AccesoDatos.csproj",
+        "projectName": "Encuesta.AccesoDatos",
+        "projectPath": "/Users/grover/projects/encuestas/backend/3-AccesoDatos/Encuesta.AccesoDatos/Encuesta.AccesoDatos.csproj",
+        "packagesPath": "/Users/grover/.nuget/packages/",
+        "outputPath": "/Users/grover/projects/encuestas/backend/3-AccesoDatos/Encuesta.AccesoDatos/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/grover/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/Encuesta.ModeloDatos.csproj": {
+                "projectPath": "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/Encuesta.ModeloDatos.csproj"
+              },
+              "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/Comun.BaseDatos.csproj": {
+                "projectPath": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/Comun.BaseDatos.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.79, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/Encuesta.ModeloDatos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/Encuesta.ModeloDatos.csproj",
+        "projectName": "Encuesta.ModeloDatos",
+        "projectPath": "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/Encuesta.ModeloDatos.csproj",
+        "packagesPath": "/Users/grover/.nuget/packages/",
+        "outputPath": "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/grover/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/Comun.BaseDatos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/Comun.BaseDatos.csproj",
+        "projectName": "Comun.BaseDatos",
+        "projectPath": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/Comun.BaseDatos.csproj",
+        "packagesPath": "/Users/grover/.nuget/packages/",
+        "outputPath": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/grover/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.Herramientas/Comun.Herramientas.csproj": {
+                "projectPath": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.Herramientas/Comun.Herramientas.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.79, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[10.0.8, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.Herramientas/Comun.Herramientas.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.Herramientas/Comun.Herramientas.csproj",
+        "projectName": "Comun.Herramientas",
+        "projectPath": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.Herramientas/Comun.Herramientas.csproj",
+        "packagesPath": "/Users/grover/.nuget/packages/",
+        "outputPath": "/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.Herramientas/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/grover/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[8.14.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Otp.NET": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[112.1.0, )"
+            },
+            "RtfPipe": {
+              "target": "Package",
+              "version": "[2.0.7677.4303, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.14.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

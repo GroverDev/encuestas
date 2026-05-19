@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kETm1t9aMbM=",
+  "success": true,
+  "projectFilePath": "/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/Encuesta.ModeloDatos.csproj",
+  "expectedPackageFiles": [
+    "/Users/grover/.nuget/packages/microsoft.netcore.app.ref/8.0.26/microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
+    "/Users/grover/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.26/microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
