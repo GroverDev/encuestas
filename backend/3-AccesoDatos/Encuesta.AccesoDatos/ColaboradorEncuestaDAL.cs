@@ -17,10 +17,10 @@ public static class ColaboradorEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, usuarioid, rol, invitadoen
-                FROM colaboradorencuesta
-                WHERE encuestaid = @EncuestaId
-                ORDER BY invitadoen DESC
+                SELECT id, encuesta_id, usuario_id, rol, invitado_en
+                FROM colaborador_encuesta
+                WHERE encuesta_id = @EncuestaId
+                ORDER BY invitado_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<ColaboradorEncuesta>(sql, new { EncuestaId = encuestaId });
         }
@@ -38,9 +38,9 @@ public static class ColaboradorEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, usuarioid, rol, invitadoen
-                FROM colaboradorencuesta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                SELECT id, encuesta_id, usuario_id, rol, invitado_en
+                FROM colaborador_encuesta
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<ColaboradorEncuesta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -61,9 +61,9 @@ public static class ColaboradorEncuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO colaboradorencuesta (encuestaid, usuarioid, rol)
+                    INSERT INTO colaborador_encuesta (encuesta_id, usuario_id, rol)
                     VALUES (@EncuestaId, @UsuarioId, @Rol)
-                    ON CONFLICT ON CONSTRAINT UQ_ColaboradorEncuesta DO UPDATE SET rol = EXCLUDED.rol
+                    ON CONFLICT ON CONSTRAINT uq_colaborador_encuesta DO UPDATE SET rol = EXCLUDED.rol
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -89,9 +89,9 @@ public static class ColaboradorEncuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE colaboradorencuesta
+                    UPDATE colaborador_encuesta
                     SET rol = @Rol
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -116,7 +116,7 @@ public static class ColaboradorEncuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM colaboradorencuesta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM colaborador_encuesta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

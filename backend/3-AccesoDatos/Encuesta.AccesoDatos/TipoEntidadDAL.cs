@@ -16,7 +16,7 @@ public static class TipoEntidadDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT id, codigo, nombre FROM tipoentidad ORDER BY nombre";
+            const string sql = "SELECT id, codigo, nombre FROM tipo_entidad ORDER BY nombre";
             return await db.CreateConnection.QueryAsync<TipoEntidad>(sql);
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -32,7 +32,7 @@ public static class TipoEntidadDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT id, codigo, nombre FROM tipoentidad WHERE id = @Id";
+            const string sql = "SELECT id, codigo, nombre FROM tipo_entidad WHERE id = @Id";
             return await db.CreateConnection.QueryFirstOrDefaultAsync<TipoEntidad>(sql, new { Id = id });
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -52,7 +52,7 @@ public static class TipoEntidadDAL
             try
             {
                 const string sql = """
-                    INSERT INTO tipoentidad (codigo, nombre)
+                    INSERT INTO tipo_entidad (codigo, nombre)
                     VALUES (@Codigo, @Nombre)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -79,7 +79,7 @@ public static class TipoEntidadDAL
             try
             {
                 const string sql = """
-                    UPDATE tipoentidad
+                    UPDATE tipo_entidad
                     SET codigo = @Codigo,
                         nombre = @Nombre
                     WHERE id = @Id
@@ -107,7 +107,7 @@ public static class TipoEntidadDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM tipoentidad WHERE id = @Id";
+                const string sql = "DELETE FROM tipo_entidad WHERE id = @Id";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id }, transaction: transaction);
                 transaction.Commit();
                 return true;

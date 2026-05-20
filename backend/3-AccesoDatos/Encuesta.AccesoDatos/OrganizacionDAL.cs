@@ -16,7 +16,7 @@ public static class OrganizacionDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT id, nombre, urllogo, creadoen FROM organizacion ORDER BY nombre";
+            const string sql = "SELECT id, nombre, url_logo, creado_en FROM organizacion ORDER BY nombre";
             return await db.CreateConnection.QueryAsync<Organizacion>(sql);
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -32,7 +32,7 @@ public static class OrganizacionDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT id, nombre, urllogo, creadoen FROM organizacion WHERE id = @Id";
+            const string sql = "SELECT id, nombre, url_logo, creado_en FROM organizacion WHERE id = @Id";
             return await db.CreateConnection.QueryFirstOrDefaultAsync<Organizacion>(sql, new { Id = id });
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -52,7 +52,7 @@ public static class OrganizacionDAL
             try
             {
                 const string sql = """
-                    INSERT INTO organizacion (nombre, urllogo)
+                    INSERT INTO organizacion (nombre, url_logo)
                     VALUES (@Nombre, @UrlLogo)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -81,7 +81,7 @@ public static class OrganizacionDAL
                 const string sql = """
                     UPDATE organizacion
                     SET nombre   = @Nombre,
-                        urllogo  = @UrlLogo
+                        url_logo  = @UrlLogo
                     WHERE id = @Id
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);

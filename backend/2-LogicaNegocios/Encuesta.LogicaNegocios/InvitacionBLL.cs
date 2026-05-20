@@ -34,11 +34,20 @@ public static class InvitacionBLL
         return response;
     }
 
-    public static async Task<Respuesta<bool>> CrearInvitacion(InvitacionRequest request)
+    public static async Task<Respuesta<Guid>> CrearInvitacion(InvitacionRequest request, Guid organizacionId = default)
     {
-        var response = new Respuesta<bool>();
+        var response = new Respuesta<Guid>();
         try
         {
+            if (request.EntidadEvaluadaId is null && !string.IsNullOrWhiteSpace(request.EntidadEvaluadaIdExterno))
+            {
+                if (organizacionId == Guid.Empty)
+                    throw new ExceptionControlado("Se requiere contexto de organización para resolver el ID externo.");
+                var entidad = await EntidadDAL.ObtenerEntidadPorIdExterno(request.EntidadEvaluadaIdExterno, organizacionId);
+                if (entidad is null)
+                    throw new ExceptionControlado($"No se encontró ninguna entidad activa con ID externo '{request.EntidadEvaluadaIdExterno}'.");
+                request.EntidadEvaluadaId = entidad.Id;
+            }
             response.Datos = await InvitacionDAL.CrearInvitacion(request);
             response.ok = true;
         }

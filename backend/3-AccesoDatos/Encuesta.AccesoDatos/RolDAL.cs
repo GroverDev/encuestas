@@ -16,7 +16,7 @@ public static class RolDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT id, organizacionid, nombre FROM rol WHERE organizacionid = @OrganizacionId ORDER BY nombre";
+            const string sql = "SELECT id, organizacion_id, nombre FROM rol WHERE organizacion_id = @OrganizacionId ORDER BY nombre";
             return await db.CreateConnection.QueryAsync<Rol>(sql, new { OrganizacionId = organizacionId });
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -32,7 +32,7 @@ public static class RolDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT id, organizacionid, nombre FROM rol WHERE id = @Id AND organizacionid = @OrganizacionId";
+            const string sql = "SELECT id, organizacion_id, nombre FROM rol WHERE id = @Id AND organizacion_id = @OrganizacionId";
             return await db.CreateConnection.QueryFirstOrDefaultAsync<Rol>(sql, new { Id = id, OrganizacionId = organizacionId });
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -51,7 +51,7 @@ public static class RolDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "INSERT INTO rol (organizacionid, nombre) VALUES (@OrganizacionId, @Nombre)";
+                const string sql = "INSERT INTO rol (organizacion_id, nombre) VALUES (@OrganizacionId, @Nombre)";
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
                 return true;
@@ -75,7 +75,7 @@ public static class RolDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "UPDATE rol SET nombre = @Nombre WHERE id = @Id AND organizacionid = @OrganizacionId";
+                const string sql = "UPDATE rol SET nombre = @Nombre WHERE id = @Id AND organizacion_id = @OrganizacionId";
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
                 return true;
@@ -99,7 +99,7 @@ public static class RolDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM rol WHERE id = @Id AND organizacionid = @OrganizacionId";
+                const string sql = "DELETE FROM rol WHERE id = @Id AND organizacion_id = @OrganizacionId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, OrganizacionId = organizacionId }, transaction: transaction);
                 transaction.Commit();
                 return true;

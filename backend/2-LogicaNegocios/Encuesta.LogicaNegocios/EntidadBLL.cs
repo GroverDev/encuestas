@@ -73,6 +73,21 @@ public static class EntidadBLL
         return response;
     }
 
+    public static async Task<Respuesta<Guid>> SincronizarEntidad(EntidadRequest request)
+    {
+        var response = new Respuesta<Guid>();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(request.IdExterno))
+                throw new ExceptionControlado("El campo idExterno es requerido para sincronizar.");
+            response.Datos = await EntidadDAL.SincronizarEntidad(request);
+            response.ok = true;
+        }
+        catch (ExceptionControlado ex) { response.SetMensaje(TiposMensaje.Error, "Atención", ex.Message); }
+        catch (Exception ex) { response.SetMensaje(TiposMensaje.Error, "Atención", ex.Message); }
+        return response;
+    }
+
     private static EntidadResponse Mapear(Entidad e) => new()
     {
         Id             = e.Id,

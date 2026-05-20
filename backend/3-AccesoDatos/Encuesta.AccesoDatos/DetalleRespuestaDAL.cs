@@ -17,10 +17,10 @@ public static class DetalleRespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, respuestaid, preguntaid,
-                       valortexto, valornumero, valorbooleano, valorfecha, valorjson
-                FROM detallerespuesta
-                WHERE respuestaid = @RespuestaId
+                SELECT id, respuesta_id, pregunta_id,
+                       valor_texto, valor_numero, valor_booleano, valor_fecha, valor_json
+                FROM detalle_respuesta
+                WHERE respuesta_id = @RespuestaId
                 """;
             return await db.CreateConnection.QueryAsync<DetalleRespuesta>(sql, new { RespuestaId = respuestaId });
         }
@@ -38,10 +38,10 @@ public static class DetalleRespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, respuestaid, preguntaid,
-                       valortexto, valornumero, valorbooleano, valorfecha, valorjson
-                FROM detallerespuesta
-                WHERE id = @Id AND respuestaid = @RespuestaId
+                SELECT id, respuesta_id, pregunta_id,
+                       valor_texto, valor_numero, valor_booleano, valor_fecha, valor_json
+                FROM detalle_respuesta
+                WHERE id = @Id AND respuesta_id = @RespuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<DetalleRespuesta>(sql, new { Id = id, RespuestaId = respuestaId });
         }
@@ -62,8 +62,8 @@ public static class DetalleRespuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO detallerespuesta
-                           (respuestaid, preguntaid, valortexto, valornumero, valorbooleano, valorfecha, valorjson)
+                    INSERT INTO detalle_respuesta
+                           (respuesta_id, pregunta_id, valor_texto, valor_numero, valor_booleano, valor_fecha, valor_json)
                     VALUES (@RespuestaId, @PreguntaId, @ValorTexto, @ValorNumero, @ValorBooleano, @ValorFecha, @ValorJson::jsonb)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -90,13 +90,13 @@ public static class DetalleRespuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE detallerespuesta
-                    SET valortexto    = @ValorTexto,
-                        valornumero   = @ValorNumero,
-                        valorbooleano = @ValorBooleano,
-                        valorfecha    = @ValorFecha,
-                        valorjson     = @ValorJson::jsonb
-                    WHERE id = @Id AND respuestaid = @RespuestaId
+                    UPDATE detalle_respuesta
+                    SET valor_texto    = @ValorTexto,
+                        valor_numero   = @ValorNumero,
+                        valor_booleano = @ValorBooleano,
+                        valor_fecha    = @ValorFecha,
+                        valor_json     = @ValorJson::jsonb
+                    WHERE id = @Id AND respuesta_id = @RespuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -121,7 +121,7 @@ public static class DetalleRespuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM detallerespuesta WHERE id = @Id AND respuestaid = @RespuestaId";
+                const string sql = "DELETE FROM detalle_respuesta WHERE id = @Id AND respuesta_id = @RespuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, RespuestaId = respuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

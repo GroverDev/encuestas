@@ -17,9 +17,9 @@ public static class OpcionPreguntaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, preguntaid, etiqueta, valor, puntaje, orden
-                FROM opcionpregunta
-                WHERE preguntaid = @PreguntaId
+                SELECT id, pregunta_id, etiqueta, valor, puntaje, orden
+                FROM opcion_pregunta
+                WHERE pregunta_id = @PreguntaId
                 ORDER BY orden
                 """;
             return await db.CreateConnection.QueryAsync<OpcionPregunta>(sql, new { PreguntaId = preguntaId });
@@ -38,9 +38,9 @@ public static class OpcionPreguntaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, preguntaid, etiqueta, valor, puntaje, orden
-                FROM opcionpregunta
-                WHERE id = @Id AND preguntaid = @PreguntaId
+                SELECT id, pregunta_id, etiqueta, valor, puntaje, orden
+                FROM opcion_pregunta
+                WHERE id = @Id AND pregunta_id = @PreguntaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<OpcionPregunta>(sql, new { Id = id, PreguntaId = preguntaId });
         }
@@ -61,7 +61,7 @@ public static class OpcionPreguntaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO opcionpregunta (preguntaid, etiqueta, valor, puntaje, orden)
+                    INSERT INTO opcion_pregunta (pregunta_id, etiqueta, valor, puntaje, orden)
                     VALUES (@PreguntaId, @Etiqueta, @Valor, @Puntaje, @Orden)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -88,12 +88,12 @@ public static class OpcionPreguntaDAL
             try
             {
                 const string sql = """
-                    UPDATE opcionpregunta
+                    UPDATE opcion_pregunta
                     SET etiqueta = @Etiqueta,
                         valor    = @Valor,
                         puntaje  = @Puntaje,
                         orden    = @Orden
-                    WHERE id = @Id AND preguntaid = @PreguntaId
+                    WHERE id = @Id AND pregunta_id = @PreguntaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -118,7 +118,7 @@ public static class OpcionPreguntaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM opcionpregunta WHERE id = @Id AND preguntaid = @PreguntaId";
+                const string sql = "DELETE FROM opcion_pregunta WHERE id = @Id AND pregunta_id = @PreguntaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, PreguntaId = preguntaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

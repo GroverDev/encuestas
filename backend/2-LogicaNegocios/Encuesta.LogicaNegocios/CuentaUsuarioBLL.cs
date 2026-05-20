@@ -82,7 +82,8 @@ public static class CuentaUsuarioBLL
         OrganizacionId = c.OrganizacionId,
         EntidadId      = c.EntidadId,
         Correo         = c.Correo,
-        EsActivo       = c.EsActivo,
-        CreadoEn       = c.CreadoEn
+        EsActivo           = c.EsActivo,
+        EsCuentaServicio   = c.EsCuentaServicio,
+        CreadoEn           = c.CreadoEn
     };
 }

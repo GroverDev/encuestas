@@ -60,6 +60,27 @@ public static class EncuestaBLL
         return response;
     }
 
+    public static async Task<Respuesta<bool>> CambiarEstado(Guid id, Guid organizacionId, string nuevoEstado)
+    {
+        var response = new Respuesta<bool>();
+        try
+        {
+            var estadosValidos = new[] { "PUBLICADA", "CERRADA" };
+            if (!estadosValidos.Contains(nuevoEstado))
+                throw new ExceptionControlado($"Estado '{nuevoEstado}' no válido.");
+
+            var actualizo = await EncuestaDAL.CambiarEstadoEncuesta(id, organizacionId, nuevoEstado);
+            if (!actualizo)
+                throw new ExceptionControlado("No se pudo cambiar el estado. Verifica que la encuesta existe y que la transición es válida.");
+
+            response.Datos = true;
+            response.ok = true;
+        }
+        catch (ExceptionControlado ex) { response.SetMensaje(TiposMensaje.Error, "Atención", ex.Message); }
+        catch (Exception ex) { response.SetMensaje(TiposMensaje.Error, "Atención", ex.Message); }
+        return response;
+    }
+
     public static async Task<Respuesta<bool>> EliminarEncuesta(Guid id, Guid organizacionId)
     {
         var response = new Respuesta<bool>();

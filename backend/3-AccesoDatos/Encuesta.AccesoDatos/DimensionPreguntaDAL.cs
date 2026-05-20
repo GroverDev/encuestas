@@ -17,9 +17,9 @@ public static class DimensionPreguntaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, nombre, descripcion, peso, orden
-                FROM dimensionpregunta
-                WHERE encuestaid = @EncuestaId
+                SELECT id, encuesta_id, nombre, descripcion, peso, orden
+                FROM dimension_pregunta
+                WHERE encuesta_id = @EncuestaId
                 ORDER BY orden
                 """;
             return await db.CreateConnection.QueryAsync<DimensionPregunta>(sql, new { EncuestaId = encuestaId });
@@ -38,9 +38,9 @@ public static class DimensionPreguntaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, nombre, descripcion, peso, orden
-                FROM dimensionpregunta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                SELECT id, encuesta_id, nombre, descripcion, peso, orden
+                FROM dimension_pregunta
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<DimensionPregunta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -61,7 +61,7 @@ public static class DimensionPreguntaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO dimensionpregunta (encuestaid, nombre, descripcion, peso, orden)
+                    INSERT INTO dimension_pregunta (encuesta_id, nombre, descripcion, peso, orden)
                     VALUES (@EncuestaId, @Nombre, @Descripcion, @Peso, @Orden)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -88,12 +88,12 @@ public static class DimensionPreguntaDAL
             try
             {
                 const string sql = """
-                    UPDATE dimensionpregunta
+                    UPDATE dimension_pregunta
                     SET nombre      = @Nombre,
                         descripcion = @Descripcion,
                         peso        = @Peso,
                         orden       = @Orden
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -118,7 +118,7 @@ public static class DimensionPreguntaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM dimensionpregunta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM dimension_pregunta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

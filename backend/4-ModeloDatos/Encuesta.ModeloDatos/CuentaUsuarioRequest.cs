@@ -8,4 +8,5 @@ public class CuentaUsuarioRequest
     public string Correo { get; set; } = "";
     public string Contrasena { get; set; } = "";
     public string HashContrasena { get; set; } = "";
+    public bool EsCuentaServicio { get; set; }
 }

@@ -17,9 +17,9 @@ public static class SeccionEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, titulo, descripcion, orden
-                FROM seccionencuesta
-                WHERE encuestaid = @EncuestaId
+                SELECT id, encuesta_id, titulo, descripcion, orden
+                FROM seccion_encuesta
+                WHERE encuesta_id = @EncuestaId
                 ORDER BY orden
                 """;
             return await db.CreateConnection.QueryAsync<SeccionEncuesta>(sql, new { EncuestaId = encuestaId });
@@ -38,9 +38,9 @@ public static class SeccionEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, titulo, descripcion, orden
-                FROM seccionencuesta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                SELECT id, encuesta_id, titulo, descripcion, orden
+                FROM seccion_encuesta
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<SeccionEncuesta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -61,7 +61,7 @@ public static class SeccionEncuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO seccionencuesta (encuestaid, titulo, descripcion, orden)
+                    INSERT INTO seccion_encuesta (encuesta_id, titulo, descripcion, orden)
                     VALUES (@EncuestaId, @Titulo, @Descripcion, @Orden)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -88,11 +88,11 @@ public static class SeccionEncuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE seccionencuesta
+                    UPDATE seccion_encuesta
                     SET titulo      = @Titulo,
                         descripcion = @Descripcion,
                         orden       = @Orden
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -117,7 +117,7 @@ public static class SeccionEncuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM seccionencuesta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM seccion_encuesta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

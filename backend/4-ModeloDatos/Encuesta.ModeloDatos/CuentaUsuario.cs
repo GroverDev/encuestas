@@ -8,5 +8,6 @@ public class CuentaUsuario
     public string Correo { get; set; } = "";
     public string HashContrasena { get; set; } = "";
     public bool EsActivo { get; set; }
+    public bool EsCuentaServicio { get; set; }
     public DateTime CreadoEn { get; set; }
 }

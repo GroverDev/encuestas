@@ -11,6 +11,9 @@ namespace Encuesta.Api.Controllers;
 [Authorize]
 public class InvitacionController : ControllerBase
 {
+    private Guid GetOrganizacionId() =>
+        Guid.TryParse(User.Claims.FirstOrDefault(c => c.Type == "OrganizacionId")?.Value, out var id) ? id : Guid.Empty;
+
     [HttpGet("{encuestaId}")]
     public async Task<ActionResult<Respuesta<IEnumerable<InvitacionResponse>>>> ObtenerInvitaciones(Guid encuestaId)
     {
@@ -26,9 +29,9 @@ public class InvitacionController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Respuesta<bool>>> CrearInvitacion([FromBody] InvitacionRequest request)
+    public async Task<ActionResult<Respuesta<Guid>>> CrearInvitacion([FromBody] InvitacionRequest request)
     {
-        var resp = await InvitacionBLL.CrearInvitacion(request);
+        var resp = await InvitacionBLL.CrearInvitacion(request, GetOrganizacionId());
         return Ok(resp);
     }
 

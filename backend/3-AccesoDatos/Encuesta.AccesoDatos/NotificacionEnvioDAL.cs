@@ -17,11 +17,11 @@ public static class NotificacionEnvioDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, invitacionid, tipo, canal, destinatario, estado,
-                       intentosenvio, enviadoen, entregadoen, errordetalle, creadoen
-                FROM notificacionenvio
-                WHERE invitacionid = @InvitacionId
-                ORDER BY creadoen DESC
+                SELECT id, invitacion_id, tipo, canal, destinatario, estado,
+                       intentos_envio, enviado_en, entregado_en, error_detalle, creado_en
+                FROM notificacion_envio
+                WHERE invitacion_id = @InvitacionId
+                ORDER BY creado_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<NotificacionEnvio>(sql, new { InvitacionId = invitacionId });
         }
@@ -39,10 +39,10 @@ public static class NotificacionEnvioDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, invitacionid, tipo, canal, destinatario, estado,
-                       intentosenvio, enviadoen, entregadoen, errordetalle, creadoen
-                FROM notificacionenvio
-                WHERE id = @Id AND invitacionid = @InvitacionId
+                SELECT id, invitacion_id, tipo, canal, destinatario, estado,
+                       intentos_envio, enviado_en, entregado_en, error_detalle, creado_en
+                FROM notificacion_envio
+                WHERE id = @Id AND invitacion_id = @InvitacionId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<NotificacionEnvio>(sql, new { Id = id, InvitacionId = invitacionId });
         }
@@ -63,7 +63,7 @@ public static class NotificacionEnvioDAL
             try
             {
                 const string sql = """
-                    INSERT INTO notificacionenvio (invitacionid, tipo, canal, destinatario)
+                    INSERT INTO notificacion_envio (invitacion_id, tipo, canal, destinatario)
                     VALUES (@InvitacionId, @Tipo, @Canal, @Destinatario)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);

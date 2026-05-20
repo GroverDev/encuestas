@@ -17,9 +17,9 @@ public static class ObjetivoRespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, respuestaid, entidadid, tiporelacion
-                FROM objetivorespuesta
-                WHERE respuestaid = @RespuestaId
+                SELECT id, respuesta_id, entidad_id, tipo_relacion
+                FROM objetivo_respuesta
+                WHERE respuesta_id = @RespuestaId
                 """;
             return await db.CreateConnection.QueryAsync<ObjetivoRespuesta>(sql, new { RespuestaId = respuestaId });
         }
@@ -37,9 +37,9 @@ public static class ObjetivoRespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, respuestaid, entidadid, tiporelacion
-                FROM objetivorespuesta
-                WHERE id = @Id AND respuestaid = @RespuestaId
+                SELECT id, respuesta_id, entidad_id, tipo_relacion
+                FROM objetivo_respuesta
+                WHERE id = @Id AND respuesta_id = @RespuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<ObjetivoRespuesta>(sql, new { Id = id, RespuestaId = respuestaId });
         }
@@ -60,7 +60,7 @@ public static class ObjetivoRespuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO objetivorespuesta (respuestaid, entidadid, tiporelacion)
+                    INSERT INTO objetivo_respuesta (respuesta_id, entidad_id, tipo_relacion)
                     VALUES (@RespuestaId, @EntidadId, @TipoRelacion)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -87,10 +87,10 @@ public static class ObjetivoRespuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE objetivorespuesta
-                    SET entidadid    = @EntidadId,
-                        tiporelacion = @TipoRelacion
-                    WHERE id = @Id AND respuestaid = @RespuestaId
+                    UPDATE objetivo_respuesta
+                    SET entidad_id    = @EntidadId,
+                        tipo_relacion = @TipoRelacion
+                    WHERE id = @Id AND respuesta_id = @RespuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -115,7 +115,7 @@ public static class ObjetivoRespuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM objetivorespuesta WHERE id = @Id AND respuestaid = @RespuestaId";
+                const string sql = "DELETE FROM objetivo_respuesta WHERE id = @Id AND respuesta_id = @RespuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, RespuestaId = respuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

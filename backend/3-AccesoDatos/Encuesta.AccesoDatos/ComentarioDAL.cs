@@ -17,10 +17,10 @@ public static class ComentarioDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, entidadid, respuestaid, usuarioid, textocomentario, creadoen
+                SELECT id, entidad_id, respuesta_id, usuario_id, texto_comentario, creado_en
                 FROM comentario
-                WHERE entidadid = @EntidadId
-                ORDER BY creadoen DESC
+                WHERE entidad_id = @EntidadId
+                ORDER BY creado_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<Comentario>(sql, new { EntidadId = entidadId });
         }
@@ -38,10 +38,10 @@ public static class ComentarioDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, entidadid, respuestaid, usuarioid, textocomentario, creadoen
+                SELECT id, entidad_id, respuesta_id, usuario_id, texto_comentario, creado_en
                 FROM comentario
-                WHERE respuestaid = @RespuestaId
-                ORDER BY creadoen DESC
+                WHERE respuesta_id = @RespuestaId
+                ORDER BY creado_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<Comentario>(sql, new { RespuestaId = respuestaId });
         }
@@ -59,7 +59,7 @@ public static class ComentarioDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, entidadid, respuestaid, usuarioid, textocomentario, creadoen
+                SELECT id, entidad_id, respuesta_id, usuario_id, texto_comentario, creado_en
                 FROM comentario
                 WHERE id = @Id
                 """;
@@ -82,7 +82,7 @@ public static class ComentarioDAL
             try
             {
                 const string sql = """
-                    INSERT INTO comentario (entidadid, respuestaid, usuarioid, textocomentario)
+                    INSERT INTO comentario (entidad_id, respuesta_id, usuario_id, texto_comentario)
                     VALUES (@EntidadId, @RespuestaId, @UsuarioId, @TextoComentario)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -110,7 +110,7 @@ public static class ComentarioDAL
             {
                 const string sql = """
                     UPDATE comentario
-                    SET textocomentario = @TextoComentario
+                    SET texto_comentario = @TextoComentario
                     WHERE id = @Id
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);

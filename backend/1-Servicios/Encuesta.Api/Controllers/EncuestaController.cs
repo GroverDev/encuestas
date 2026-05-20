@@ -48,6 +48,14 @@ public class EncuestaController : ControllerBase
         return Ok(resp);
     }
 
+    [HttpPatch("{id}/estado")]
+    public async Task<ActionResult<Respuesta<bool>>> CambiarEstado(Guid id, [FromBody] CambiarEstadoEncuestaRequest request)
+    {
+        request.Id = id;
+        var resp = await EncuestaBLL.CambiarEstado(id, GetOrganizacionId(), request.NuevoEstado);
+        return Ok(resp);
+    }
+
     [HttpDelete("{id}")]
     public async Task<ActionResult<Respuesta<bool>>> EliminarEncuesta(Guid id)
     {

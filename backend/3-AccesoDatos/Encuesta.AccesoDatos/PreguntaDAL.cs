@@ -17,10 +17,10 @@ public static class PreguntaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, seccionid, dimensionid, tipo, titulo, descripcion,
-                       orden, peso, esobligatoria, configuracionjson, creadoen
+                SELECT id, encuesta_id, seccion_id, dimension_id, tipo, titulo, descripcion,
+                       orden, peso, es_obligatoria, configuracion_json, creado_en
                 FROM pregunta
-                WHERE encuestaid = @EncuestaId
+                WHERE encuesta_id = @EncuestaId
                 ORDER BY orden
                 """;
             return await db.CreateConnection.QueryAsync<Pregunta>(sql, new { EncuestaId = encuestaId });
@@ -39,10 +39,10 @@ public static class PreguntaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, seccionid, dimensionid, tipo, titulo, descripcion,
-                       orden, peso, esobligatoria, configuracionjson, creadoen
+                SELECT id, encuesta_id, seccion_id, dimension_id, tipo, titulo, descripcion,
+                       orden, peso, es_obligatoria, configuracion_json, creado_en
                 FROM pregunta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<Pregunta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -63,8 +63,8 @@ public static class PreguntaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO pregunta (encuestaid, seccionid, dimensionid, tipo, titulo,
-                                         descripcion, orden, peso, esobligatoria, configuracionjson)
+                    INSERT INTO pregunta (encuesta_id, seccion_id, dimension_id, tipo, titulo,
+                                         descripcion, orden, peso, es_obligatoria, configuracion_json)
                     VALUES (@EncuestaId, @SeccionId, @DimensionId, @Tipo, @Titulo,
                             @Descripcion, @Orden, @Peso, @EsObligatoria, @ConfiguracionJson::jsonb)
                     """;
@@ -93,16 +93,16 @@ public static class PreguntaDAL
             {
                 const string sql = """
                     UPDATE pregunta
-                    SET seccionid        = @SeccionId,
-                        dimensionid      = @DimensionId,
+                    SET seccion_id        = @SeccionId,
+                        dimension_id      = @DimensionId,
                         tipo             = @Tipo,
                         titulo           = @Titulo,
                         descripcion      = @Descripcion,
                         orden            = @Orden,
                         peso             = @Peso,
-                        esobligatoria    = @EsObligatoria,
-                        configuracionjson = @ConfiguracionJson::jsonb
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                        es_obligatoria    = @EsObligatoria,
+                        configuracion_json = @ConfiguracionJson::jsonb
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -127,7 +127,7 @@ public static class PreguntaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM pregunta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM pregunta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

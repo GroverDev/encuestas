@@ -17,10 +17,10 @@ public static class AdjuntoDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, entidadid, nombrearchivo, urlarchivo, subidoen
+                SELECT id, entidad_id, nombre_archivo, url_archivo, subido_en
                 FROM adjunto
-                WHERE entidadid = @EntidadId
-                ORDER BY subidoen DESC
+                WHERE entidad_id = @EntidadId
+                ORDER BY subido_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<Adjunto>(sql, new { EntidadId = entidadId });
         }
@@ -38,9 +38,9 @@ public static class AdjuntoDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, entidadid, nombrearchivo, urlarchivo, subidoen
+                SELECT id, entidad_id, nombre_archivo, url_archivo, subido_en
                 FROM adjunto
-                WHERE id = @Id AND entidadid = @EntidadId
+                WHERE id = @Id AND entidad_id = @EntidadId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<Adjunto>(sql, new { Id = id, EntidadId = entidadId });
         }
@@ -61,7 +61,7 @@ public static class AdjuntoDAL
             try
             {
                 const string sql = """
-                    INSERT INTO adjunto (entidadid, nombrearchivo, urlarchivo)
+                    INSERT INTO adjunto (entidad_id, nombre_archivo, url_archivo)
                     VALUES (@EntidadId, @NombreArchivo, @UrlArchivo)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -89,9 +89,9 @@ public static class AdjuntoDAL
             {
                 const string sql = """
                     UPDATE adjunto
-                    SET nombrearchivo = @NombreArchivo,
-                        urlarchivo    = @UrlArchivo
-                    WHERE id = @Id AND entidadid = @EntidadId
+                    SET nombre_archivo = @NombreArchivo,
+                        url_archivo    = @UrlArchivo
+                    WHERE id = @Id AND entidad_id = @EntidadId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -116,7 +116,7 @@ public static class AdjuntoDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM adjunto WHERE id = @Id AND entidadid = @EntidadId";
+                const string sql = "DELETE FROM adjunto WHERE id = @Id AND entidad_id = @EntidadId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EntidadId = entidadId }, transaction: transaction);
                 transaction.Commit();
                 return true;

@@ -16,7 +16,7 @@ public static class UsuarioRolDAL
         try
         {
             db.CreateConnection.Open();
-            const string sql = "SELECT usuarioid, rolid FROM usuariorol WHERE usuarioid = @UsuarioId";
+            const string sql = "SELECT usuario_id, rol_id FROM usuario_rol WHERE usuario_id = @UsuarioId";
             return await db.CreateConnection.QueryAsync<UsuarioRol>(sql, new { UsuarioId = usuarioId });
         }
         catch (NpgsqlException ex) when (ex.InnerException is SocketException) { throw new ExceptionControlado("El servidor de la base de datos está caído o inaccesible."); }
@@ -36,7 +36,7 @@ public static class UsuarioRolDAL
             try
             {
                 const string sql = """
-                    INSERT INTO usuariorol (usuarioid, rolid)
+                    INSERT INTO usuario_rol (usuario_id, rol_id)
                     VALUES (@UsuarioId, @RolId)
                     ON CONFLICT DO NOTHING
                     """;
@@ -63,7 +63,7 @@ public static class UsuarioRolDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM usuariorol WHERE usuarioid = @UsuarioId AND rolid = @RolId";
+                const string sql = "DELETE FROM usuario_rol WHERE usuario_id = @UsuarioId AND rol_id = @RolId";
                 await db.CreateConnection.ExecuteAsync(sql, new { UsuarioId = usuarioId, RolId = rolId }, transaction: transaction);
                 transaction.Commit();
                 return true;

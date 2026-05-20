@@ -17,11 +17,11 @@ public static class InvitacionDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, cuentausuarioid, correodestino, entidadevaluadaid,
-                       tokenacceso, canal, estado, enviadoen, veceen, respondidoen
+                SELECT id, encuesta_id, cuenta_usuario_id, correo_destino, entidad_evaluada_id,
+                       token_acceso, canal, estado, enviado_en, vence_en, respondido_en
                 FROM invitacion
-                WHERE encuestaid = @EncuestaId
-                ORDER BY enviadoen DESC
+                WHERE encuesta_id = @EncuestaId
+                ORDER BY enviado_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<Invitacion>(sql, new { EncuestaId = encuestaId });
         }
@@ -39,10 +39,10 @@ public static class InvitacionDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, cuentausuarioid, correodestino, entidadevaluadaid,
-                       tokenacceso, canal, estado, enviadoen, veceen, respondidoen
+                SELECT id, encuesta_id, cuenta_usuario_id, correo_destino, entidad_evaluada_id,
+                       token_acceso, canal, estado, enviado_en, vence_en, respondido_en
                 FROM invitacion
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<Invitacion>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -53,7 +53,7 @@ public static class InvitacionDAL
         finally { db.CreateConnection.Close(); }
     }
 
-    public static async Task<bool> CrearInvitacion(InvitacionRequest request)
+    public static async Task<Guid> CrearInvitacion(InvitacionRequest request)
     {
         var db = new DapperDb(DB.GestorDB.POSTGRESQL, DB.Sistema.ENCUESTA, DB.BaseDeDatos.LOCAL);
         try
@@ -63,14 +63,15 @@ public static class InvitacionDAL
             try
             {
                 const string sql = """
-                    INSERT INTO invitacion (encuestaid, cuentausuarioid, correodestino,
-                                           entidadevaluadaid, canal, veceen)
+                    INSERT INTO invitacion (encuesta_id, cuenta_usuario_id, correo_destino,
+                                           entidad_evaluada_id, canal, vence_en)
                     VALUES (@EncuestaId, @CuentaUsuarioId, @CorreoDestino,
                             @EntidadEvaluadaId, @Canal, @VenceEn)
+                    RETURNING token_acceso
                     """;
-                await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
+                var token = await db.CreateConnection.ExecuteScalarAsync<Guid>(sql, request, transaction: transaction);
                 transaction.Commit();
-                return true;
+                return token;
             }
             catch (ExceptionControlado ex) { transaction.Rollback(); throw new ExceptionControlado(ex.Message, ex); }
             catch (Exception ex) { transaction.Rollback(); throw new Exception(ex.Message, ex); }
@@ -95,9 +96,9 @@ public static class InvitacionDAL
                     UPDATE invitacion
                     SET canal             = @Canal,
                         estado            = @Estado,
-                        veceen            = @VenceEn,
-                        entidadevaluadaid = @EntidadEvaluadaId
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                        vence_en            = @VenceEn,
+                        entidad_evaluada_id = @EntidadEvaluadaId
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -122,7 +123,7 @@ public static class InvitacionDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM invitacion WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM invitacion WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

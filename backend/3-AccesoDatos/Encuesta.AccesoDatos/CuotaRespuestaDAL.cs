@@ -17,9 +17,9 @@ public static class CuotaRespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, entidadid, limite, totalactual, cerraralcanzar
-                FROM cuotarespuesta
-                WHERE encuestaid = @EncuestaId
+                SELECT id, encuesta_id, entidad_id, limite, total_actual, cerrar_al_alcanzar
+                FROM cuota_respuesta
+                WHERE encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryAsync<CuotaRespuesta>(sql, new { EncuestaId = encuestaId });
         }
@@ -37,9 +37,9 @@ public static class CuotaRespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, entidadid, limite, totalactual, cerraralcanzar
-                FROM cuotarespuesta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                SELECT id, encuesta_id, entidad_id, limite, total_actual, cerrar_al_alcanzar
+                FROM cuota_respuesta
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<CuotaRespuesta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -60,7 +60,7 @@ public static class CuotaRespuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO cuotarespuesta (encuestaid, entidadid, limite, cerraralcanzar)
+                    INSERT INTO cuota_respuesta (encuesta_id, entidad_id, limite, cerrar_al_alcanzar)
                     VALUES (@EncuestaId, @EntidadId, @Limite, @CerrarAlAlcanzar)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -87,11 +87,11 @@ public static class CuotaRespuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE cuotarespuesta
+                    UPDATE cuota_respuesta
                     SET limite           = @Limite,
-                        cerraralcanzar   = @CerrarAlAlcanzar,
-                        entidadid        = @EntidadId
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                        cerrar_al_alcanzar   = @CerrarAlAlcanzar,
+                        entidad_id        = @EntidadId
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -116,7 +116,7 @@ public static class CuotaRespuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM cuotarespuesta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM cuota_respuesta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

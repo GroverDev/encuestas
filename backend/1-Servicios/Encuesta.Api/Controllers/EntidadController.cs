@@ -36,6 +36,14 @@ public class EntidadController : ControllerBase
         return Ok(resp);
     }
 
+    [HttpPost("sincronizar")]
+    public async Task<ActionResult<Respuesta<Guid>>> SincronizarEntidad([FromBody] EntidadRequest request)
+    {
+        request.OrganizacionId = GetOrganizacionId();
+        var resp = await EntidadBLL.SincronizarEntidad(request);
+        return Ok(resp);
+    }
+
     [HttpPut]
     public async Task<ActionResult<Respuesta<bool>>> ActualizarEntidad([FromBody] EntidadRequest request)
     {

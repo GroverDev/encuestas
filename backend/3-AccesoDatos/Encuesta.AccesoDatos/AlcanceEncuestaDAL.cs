@@ -17,9 +17,9 @@ public static class AlcanceEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, entidadid, tiporelacion, incluirdescendientes
-                FROM alcanceencuesta
-                WHERE encuestaid = @EncuestaId
+                SELECT id, encuesta_id, entidad_id, tipo_relacion, incluir_descendientes
+                FROM alcance_encuesta
+                WHERE encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryAsync<AlcanceEncuesta>(sql, new { EncuestaId = encuestaId });
         }
@@ -37,9 +37,9 @@ public static class AlcanceEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, entidadid, tiporelacion, incluirdescendientes
-                FROM alcanceencuesta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                SELECT id, encuesta_id, entidad_id, tipo_relacion, incluir_descendientes
+                FROM alcance_encuesta
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<AlcanceEncuesta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -60,7 +60,7 @@ public static class AlcanceEncuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO alcanceencuesta (encuestaid, entidadid, tiporelacion, incluirdescendientes)
+                    INSERT INTO alcance_encuesta (encuesta_id, entidad_id, tipo_relacion, incluir_descendientes)
                     VALUES (@EncuestaId, @EntidadId, @TipoRelacion, @IncluirDescendientes)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -87,11 +87,11 @@ public static class AlcanceEncuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE alcanceencuesta
-                    SET entidadid            = @EntidadId,
-                        tiporelacion         = @TipoRelacion,
-                        incluirdescendientes = @IncluirDescendientes
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                    UPDATE alcance_encuesta
+                    SET entidad_id            = @EntidadId,
+                        tipo_relacion         = @TipoRelacion,
+                        incluir_descendientes = @IncluirDescendientes
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -116,7 +116,7 @@ public static class AlcanceEncuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM alcanceencuesta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM alcance_encuesta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

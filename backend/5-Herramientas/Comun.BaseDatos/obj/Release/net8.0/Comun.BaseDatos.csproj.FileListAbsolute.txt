@@ -1,0 +1,16 @@
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/bin/Release/net8.0/Comun.BaseDatos.deps.json
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/bin/Release/net8.0/Comun.BaseDatos.dll
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/bin/Release/net8.0/Comun.BaseDatos.pdb
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/bin/Release/net8.0/Comun.Herramientas.dll
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/bin/Release/net8.0/Comun.Herramientas.pdb
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.csproj.AssemblyReference.cache
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.GeneratedMSBuildEditorConfig.editorconfig
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.AssemblyInfoInputs.cache
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.AssemblyInfo.cs
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.csproj.CoreCompileInputs.cache
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.sourcelink.json
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.Ba.59DF2FB4.Up2Date
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.dll
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/refint/Comun.BaseDatos.dll
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/Comun.BaseDatos.pdb
+/Users/grover/projects/encuestas/backend/5-Herramientas/Comun.BaseDatos/obj/Release/net8.0/ref/Comun.BaseDatos.dll

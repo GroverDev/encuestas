@@ -17,9 +17,9 @@ public static class ReglaEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, reglajson
-                FROM reglaencuesta
-                WHERE encuestaid = @EncuestaId
+                SELECT id, encuesta_id, regla_json
+                FROM regla_encuesta
+                WHERE encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryAsync<ReglaEncuesta>(sql, new { EncuestaId = encuestaId });
         }
@@ -37,9 +37,9 @@ public static class ReglaEncuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, reglajson
-                FROM reglaencuesta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                SELECT id, encuesta_id, regla_json
+                FROM regla_encuesta
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<ReglaEncuesta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -60,7 +60,7 @@ public static class ReglaEncuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO reglaencuesta (encuestaid, reglajson)
+                    INSERT INTO regla_encuesta (encuesta_id, regla_json)
                     VALUES (@EncuestaId, @ReglaJson::jsonb)
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
@@ -87,9 +87,9 @@ public static class ReglaEncuestaDAL
             try
             {
                 const string sql = """
-                    UPDATE reglaencuesta
-                    SET reglajson = @ReglaJson::jsonb
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                    UPDATE regla_encuesta
+                    SET regla_json = @ReglaJson::jsonb
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -114,7 +114,7 @@ public static class ReglaEncuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM reglaencuesta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM regla_encuesta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

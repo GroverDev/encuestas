@@ -7,5 +7,6 @@ public class CuentaUsuarioResponse
     public Guid? EntidadId { get; set; }
     public string Correo { get; set; } = "";
     public bool EsActivo { get; set; }
+    public bool EsCuentaServicio { get; set; }
     public DateTime CreadoEn { get; set; }
 }

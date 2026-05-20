@@ -17,12 +17,12 @@ public static class RespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, versionencuesta, invitacionid, usuariorespondentid,
-                       canal, ultimapreguntaid, pesoestadistico, consentimientootorgado,
-                       fechaconsentimiento, iniciadoen, completadoen, infodispositivo, direccionip
+                SELECT id, encuesta_id, version_encuesta, invitacion_id, usuario_respondent_id,
+                       canal, ultima_pregunta_id, peso_estadistico, consentimiento_otorgado,
+                       fecha_consentimiento, iniciado_en, completado_en, info_dispositivo, direccion_ip
                 FROM respuesta
-                WHERE encuestaid = @EncuestaId
-                ORDER BY iniciadoen DESC
+                WHERE encuesta_id = @EncuestaId
+                ORDER BY iniciado_en DESC
                 """;
             return await db.CreateConnection.QueryAsync<Respuesta>(sql, new { EncuestaId = encuestaId });
         }
@@ -40,11 +40,11 @@ public static class RespuestaDAL
         {
             db.CreateConnection.Open();
             const string sql = """
-                SELECT id, encuestaid, versionencuesta, invitacionid, usuariorespondentid,
-                       canal, ultimapreguntaid, pesoestadistico, consentimientootorgado,
-                       fechaconsentimiento, iniciadoen, completadoen, infodispositivo, direccionip
+                SELECT id, encuesta_id, version_encuesta, invitacion_id, usuario_respondent_id,
+                       canal, ultima_pregunta_id, peso_estadistico, consentimiento_otorgado,
+                       fecha_consentimiento, iniciado_en, completado_en, info_dispositivo, direccion_ip
                 FROM respuesta
-                WHERE id = @Id AND encuestaid = @EncuestaId
+                WHERE id = @Id AND encuesta_id = @EncuestaId
                 """;
             return await db.CreateConnection.QueryFirstOrDefaultAsync<Respuesta>(sql, new { Id = id, EncuestaId = encuestaId });
         }
@@ -65,8 +65,8 @@ public static class RespuestaDAL
             try
             {
                 const string sql = """
-                    INSERT INTO respuesta (encuestaid, versionencuesta, invitacionid, usuariorespondentid,
-                                          canal, pesoestadistico, infodispositivo, direccionip, iniciadoen)
+                    INSERT INTO respuesta (encuesta_id, version_encuesta, invitacion_id, usuario_respondent_id,
+                                          canal, peso_estadistico, info_dispositivo, direccion_ip, iniciado_en)
                     VALUES (@EncuestaId, @VersionEncuesta, @InvitacionId, @UsuarioRespondentId,
                             @Canal, @PesoEstadistico, @InfoDispositivo, @DireccionIp, NOW())
                     """;
@@ -95,14 +95,14 @@ public static class RespuestaDAL
             {
                 const string sql = """
                     UPDATE respuesta
-                    SET ultimapreguntaid        = @UltimaPreguntaId,
-                        completadoen           = @CompletadoEn,
-                        consentimientootorgado = @ConsentimientoOtorgado,
-                        fechaconsentimiento    = @FechaConsentimiento,
-                        pesoestadistico        = @PesoEstadistico,
-                        infodispositivo        = @InfoDispositivo,
-                        direccionip            = @DireccionIp
-                    WHERE id = @Id AND encuestaid = @EncuestaId
+                    SET ultima_pregunta_id        = @UltimaPreguntaId,
+                        completado_en           = @CompletadoEn,
+                        consentimiento_otorgado = @ConsentimientoOtorgado,
+                        fecha_consentimiento    = @FechaConsentimiento,
+                        peso_estadistico        = @PesoEstadistico,
+                        info_dispositivo        = @InfoDispositivo,
+                        direccion_ip            = @DireccionIp
+                    WHERE id = @Id AND encuesta_id = @EncuestaId
                     """;
                 await db.CreateConnection.ExecuteAsync(sql, request, transaction: transaction);
                 transaction.Commit();
@@ -127,7 +127,7 @@ public static class RespuestaDAL
             using var transaction = db.CreateConnection.BeginTransaction();
             try
             {
-                const string sql = "DELETE FROM respuesta WHERE id = @Id AND encuestaid = @EncuestaId";
+                const string sql = "DELETE FROM respuesta WHERE id = @Id AND encuesta_id = @EncuestaId";
                 await db.CreateConnection.ExecuteAsync(sql, new { Id = id, EncuestaId = encuestaId }, transaction: transaction);
                 transaction.Commit();
                 return true;

@@ -1,0 +1,12 @@
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/bin/Release/net8.0/Encuesta.ModeloDatos.deps.json
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/bin/Release/net8.0/Encuesta.ModeloDatos.dll
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/bin/Release/net8.0/Encuesta.ModeloDatos.pdb
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.GeneratedMSBuildEditorConfig.editorconfig
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.AssemblyInfoInputs.cache
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.AssemblyInfo.cs
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.csproj.CoreCompileInputs.cache
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.sourcelink.json
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.dll
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/refint/Encuesta.ModeloDatos.dll
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/Encuesta.ModeloDatos.pdb
+/Users/grover/projects/encuestas/backend/4-ModeloDatos/Encuesta.ModeloDatos/obj/Release/net8.0/ref/Encuesta.ModeloDatos.dll
